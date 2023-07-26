@@ -1,0 +1,11 @@
+.container-fluid{
+   height: 50px;
+}
+
+.navbar-brand{
+    color: yellow;
+}
+
+.navbar-brand:hover{
+    color: yellow;
+}

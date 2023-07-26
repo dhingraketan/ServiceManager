@@ -1,0 +1,15 @@
+<div class="my-3 svc container-fluid">
+    <h3 class="name fw-bold">{{service.name}}</h3>
+    <div *ngIf="service.status; then thenBlock; else elseBlock"></div>
+    <ng-template #thenBlock>
+        <h5 class="bg-success bg-gradient text-white">Running</h5>
+        <button class="btn bg-danger text-white" (click)="onStop(service)">Stop</button>
+    </ng-template>
+    <ng-template #elseBlock>
+        <h5 class="bg-danger bg-gradient text-white">Stopped</h5>
+        <button class="btn bg-success text-white" (click)="onStart(service)">Start</button>
+    </ng-template>
+    <button class="btn bg-white text-blue" (click)="onUploadCode(service)" id="code">Upload Source Code</button>
+    <button class="btn" (click)="onDownloadConfig(service)" id="config">Download Config File</button>
+    <button class="btn" (click)="onUploadConfig(service)" id="config">Upload Config File</button>
+</div>

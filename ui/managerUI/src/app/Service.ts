@@ -3,5 +3,6 @@ export class Service{
     path!: string;
     configPath!: string;
     status!: boolean;
+    file: File | undefined;
     
 }

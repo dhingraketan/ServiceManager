@@ -6,13 +6,17 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ServicesComponent } from './services/services.component';
 import { SvcComponent } from './svc/svc.component';
+import { UploadConfigPopupComponent } from './upload-config-popup/upload-config-popup.component';
+import { UploadCodePopupComponent } from './upload-code-popup/upload-code-popup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     ServicesComponent,
-    SvcComponent
+    SvcComponent,
+    UploadConfigPopupComponent,
+    UploadCodePopupComponent
   ],
   imports: [
     BrowserModule,

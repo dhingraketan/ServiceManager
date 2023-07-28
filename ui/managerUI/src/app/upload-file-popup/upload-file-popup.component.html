@@ -1,0 +1,16 @@
+<div class="popup-container">
+    <div class="popup-header">
+      <h1>Upload File</h1>
+    </div>
+    <form class="popup-form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="fileInput" class="h4">Select File:</label>
+        <input type="file" id="fileInput">
+      </div>
+      <div class="form-buttons">
+        <button type="submit" class="btn-primary">Save</button>
+        <button type="button" class="btn-secondary" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+  

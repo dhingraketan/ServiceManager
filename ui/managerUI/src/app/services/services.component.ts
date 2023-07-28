@@ -14,14 +14,10 @@ export class ServicesComponent implements OnInit{
     this.services = [
       {
         name: "Service 1",
-        path: "C:\\Program Files\\Service1\\Service1.exe",
-        configPath: "C:\\Program Files\\Service1\\config.json",
-        status: true
+        status: true,
       },
       {
         name: "Service 2",
-        path: "C:\\Program Files\\Service2\\Service2.exe",
-        configPath: "C:\\Program Files\\Service2\\config.json",
         status: false
       }
     ]

@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {MatDialogModule} from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ServicesComponent } from './services/services.component';
 import { SvcComponent } from './svc/svc.component';
-import { UploadConfigPopupComponent } from './upload-config-popup/upload-config-popup.component';
-import { UploadCodePopupComponent } from './upload-code-popup/upload-code-popup.component';
+import { UploadFilePopupComponent } from './upload-file-popup/upload-file-popup.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +16,13 @@ import { UploadCodePopupComponent } from './upload-code-popup/upload-code-popup.
     NavbarComponent,
     ServicesComponent,
     SvcComponent,
-    UploadConfigPopupComponent,
-    UploadCodePopupComponent
+    UploadFilePopupComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatDialogModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

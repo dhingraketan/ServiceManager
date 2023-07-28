@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Service } from '../Service';
-import {MatDialog} from '@angular/material/dialog';
-import { UploadConfigPopupComponent } from '../upload-config-popup/upload-config-popup.component';
-import { UploadCodePopupComponent } from '../upload-code-popup/upload-code-popup.component';
+import { MatDialog } from '@angular/material/dialog';
+import { UploadFilePopupComponent } from '../upload-file-popup/upload-file-popup.component';
+import { Update } from '../Update';
 
 
 @Component({
@@ -10,40 +10,65 @@ import { UploadCodePopupComponent } from '../upload-code-popup/upload-code-popup
   templateUrl: './svc.component.html',
   styleUrls: ['./svc.component.css']
 })
-export class SvcComponent implements OnInit{
+export class SvcComponent implements OnInit {
   @Input() service!: Service;
-  @Output() UploadConfigEvent = new EventEmitter<Service>();
+  @Output() UploadConfigEvent = new EventEmitter<Update>();
   @Output() DownloadConfigEvent = new EventEmitter<Service>();
-  @Output() DownloadCodeEvent = new EventEmitter<Service>();
+  @Output() UploadCodeEvent = new EventEmitter<Update>();
 
-  constructor(public dialog: MatDialog) {}
-  
+  constructor(private dialog: MatDialog) { }
+
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+
   }
 
-  onStart(){}
+  onStart() {
+    console.log("Start");
+  }
 
-  onStop(){}
+  onStop() {
+    console.log("Stop");
+  }
 
-  onUploadCode(){
-
+  onUploadCode() {
+    console.log("Upload Code");
     setTimeout(() => {
-      this.dialog.open(UploadConfigPopupComponent, {
+      this.dialog.open(UploadFilePopupComponent, {
         data: {
-          name: this.service.name,
+          serviceName: this.service.name,
+          file: null,
           isUploading: true
         }
-      }).afterClosed().subscribe(uploadedFile => {
-        if(uploadedFile){
-          this.service.file = uploadedFile;
-          this.UploadConfigEvent.emit(this.service);
+      }).afterClosed().subscribe(update => {
+        if (update) {
+          this.UploadCodeEvent.emit(update);
         }
       });
     })
   }
 
-  onDownloadConfig(){}
 
-  onUploadConfig(){}
+  onDownloadConfig() {
+    console.log("Download Config");
+    this.DownloadConfigEvent.emit(this.service);
+  }
+
+  onUploadConfig() {
+    console.log("Upload Config");
+
+    setTimeout(() => {
+      this.dialog.open(UploadFilePopupComponent, {
+        data: {
+          serviceName: this.service.name,
+          file: null,
+          isUploading: true
+        }
+      }).afterClosed().subscribe(update => {
+        if (update) {
+          console.log(update);
+          this.UploadConfigEvent.emit(update);
+        }
+      });
+    })
+  }
 }

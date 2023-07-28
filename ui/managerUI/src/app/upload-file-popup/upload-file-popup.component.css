@@ -1,0 +1,59 @@
+/* Styling for the container */
+.popup-container {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: fit-content;
+    margin: 0 auto;
+  }
+  
+  /* Styling for the header */
+  .popup-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Styling for the form */
+  .popup-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Styling for form inputs */
+  .popup-form .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .popup-form label {
+    font-weight: bold;
+    display: block;
+  }
+  
+  .popup-form input[type="file"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Styling for form buttons */
+  .form-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .form-buttons button {
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+  }
+  

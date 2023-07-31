@@ -23,15 +23,18 @@ router.get('/list', function (req, res, next) {
 });
 
 router.post('/start', function (req, res, next) {
-    var svcName = req.params.serviceName;
-    pythonProcess = spawn('python', [svcName + '.py']);
+    var svcName = req.body.serviceName;
+    pythonProcess = spawn('python', ['s1.py']);
+    pythonProcess.stdout.on('data', (data) => {
+        console.log(data.toString());
+    });
     console.log(svcName);
     return res.status(200).json({ message: 'Service started' });
     
 });
 
 router.post('/stop', function (req, res, next) {
-    var svcName = req.params.serviceName;
+    var svcName = req.body.serviceName;
     if(pythonProcess){
         pythonProcess.kill();
         pythonProcess = null;

@@ -16,12 +16,12 @@ export class ManagerServiceService {
 
   startService(serviceName: string) {
     let url = environment.SERVICE_BASE_URL + environment.SERVICE.START_SERVICE;
-    return this.httpClient.post(url, serviceName);
+    return this.httpClient.post(url, {serviceName});
   }
 
   stopService(serviceName: string) {
     let url = environment.SERVICE_BASE_URL + environment.SERVICE.STOP_SERVICE;
-    return this.httpClient.post(url, serviceName);
+    return this.httpClient.post(url, {serviceName});
   }
 
   uploadConfig(serviceName: string, file: File) {

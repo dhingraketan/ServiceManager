@@ -12,9 +12,11 @@ import { Update } from '../Update';
 })
 export class SvcComponent implements OnInit {
   @Input() service!: Service;
-  @Output() UploadConfigEvent = new EventEmitter<Update>();
-  @Output() DownloadConfigEvent = new EventEmitter<Service>();
-  @Output() UploadCodeEvent = new EventEmitter<Update>();
+  @Output() uploadConfigEvent = new EventEmitter<Update>();
+  @Output() downloadConfigEvent = new EventEmitter<string>();
+  @Output() uploadCodeEvent = new EventEmitter<Update>();
+  @Output() startEvent = new EventEmitter<string>();
+  @Output() stopEvent = new EventEmitter<string>();
 
   constructor(private dialog: MatDialog) { }
 
@@ -23,11 +25,11 @@ export class SvcComponent implements OnInit {
   }
 
   onStart() {
-    console.log("Start");
+    this.startEvent.emit(this.service.name);
   }
 
   onStop() {
-    console.log("Stop");
+    this.stopEvent.emit(this.service.name);
   }
 
   onUploadCode() {
@@ -41,7 +43,7 @@ export class SvcComponent implements OnInit {
         }
       }).afterClosed().subscribe(update => {
         if (update) {
-          this.UploadCodeEvent.emit(update);
+          this.uploadCodeEvent.emit(update);
         }
       });
     })
@@ -50,7 +52,7 @@ export class SvcComponent implements OnInit {
 
   onDownloadConfig() {
     console.log("Download Config");
-    this.DownloadConfigEvent.emit(this.service);
+    this.downloadConfigEvent.emit(this.service.name);
   }
 
   onUploadConfig() {
@@ -66,7 +68,7 @@ export class SvcComponent implements OnInit {
       }).afterClosed().subscribe(update => {
         if (update) {
           console.log(update);
-          this.UploadConfigEvent.emit(update);
+          this.uploadConfigEvent.emit(update);
         }
       });
     })

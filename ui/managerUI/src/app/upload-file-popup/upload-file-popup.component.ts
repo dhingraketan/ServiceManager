@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Update } from '../Update';
+import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
 
 @Component({
   selector: 'app-upload-file-popup',

@@ -18,14 +18,16 @@ export class ServicesComponent implements OnInit{
   constructor( private ManagerService: ManagerServiceService) { 
     this.services = [
       {
-        name: "Service 1",
+        name: "s1",
         status: true,
       },
       {
-        name: "Service 2",
+        name: "s1",
         status: false
       }
     ]
+
+    this.getServices();
   }
 
   ngOnInit(): void {
@@ -40,15 +42,17 @@ export class ServicesComponent implements OnInit{
 
  startService(name:string){
     this.ManagerService.startService(name).subscribe((data:any)=>{
-      this.getServices();
-      window.location.reload();
+      // this.getServices();
+      // window.location.reload();
+      console.log(data);
     });
  }
 
   stopService(name:string){
     this.ManagerService.stopService(name).subscribe((data:any)=>{
-      this.getServices();
-      window.location.reload();
+      // this.getServices();
+      // window.location.reload();
+      console.log(data);
     });
   }
 

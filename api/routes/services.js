@@ -52,24 +52,19 @@ function getFiles(directoryPath, extension) {
 }
 
 router.post('/start', function (req, res, next) {
-    // var svcName = req.body.serviceName;
-    // pythonProcess = spawn('python', ['s1.py']);
-    // pythonProcess.stdout.on('data', (data) => {
-    //     console.log(data.toString());
-    // });
-    // console.log(svcName);
-    // pm2.start({
-    //     script: path,
-    //     name: name
-    // }, function (err, apps) {
-    //     if (err) {
-    //         console.log(err);
-    //     } else {
-    //         status = true;
-    //     }
-    // })
-    return res.status(200).json({ message: 'Service started' });
-
+    var svcName = req.body.serviceName;
+    var path = fileDir + '\\' + svcName;
+    pm2.start({
+        script: path,
+        name: svcName
+    }, function (err, apps) {
+        if (err) {
+            console.log(err);
+        } else {
+            services.find(service => service.name == svcName).status = true;
+        }
+    })
+    return res.status(200).send(services);
 });
 
 // check if a python script is running
@@ -78,13 +73,16 @@ function isRunning(fileName) {
 }
 
 router.post('/stop', function (req, res, next) {
-    // var svcName = req.body.serviceName;
-    // if (pythonProcess) {
-    //     pythonProcess.kill();
-    //     pythonProcess = null;
-    // }
-    // console.log(svcName);
-    return res.status(200).json({ message: 'Service stopped' });
+    var svcName = req.body.serviceName;
+    var path = fileDir + '\\' + svcName;
+   pm2.stop(svcName, function (err, apps) {
+        if (err) {
+            console.log(err);
+        } else {
+            services.find(service => service.name == svcName).status = false;
+        }
+    })
+    return res.status(200).send(services);
 });
 
 module.exports = router;

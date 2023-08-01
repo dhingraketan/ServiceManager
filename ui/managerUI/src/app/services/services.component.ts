@@ -31,16 +31,14 @@ export class ServicesComponent implements OnInit{
 
  startService(name:string){
     this.ManagerService.startService(name).subscribe((data:any)=>{
-      // this.getServices();
-      // window.location.reload();
+      window.location.reload();
       console.log(data);
     });
  }
 
   stopService(name:string){
     this.ManagerService.stopService(name).subscribe((data:any)=>{
-      // this.getServices();
-      // window.location.reload();
+      window.location.reload();
       console.log(data);
     });
   }

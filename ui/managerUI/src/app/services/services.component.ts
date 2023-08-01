@@ -16,17 +16,6 @@ export class ServicesComponent implements OnInit{
  
 
   constructor( private ManagerService: ManagerServiceService) { 
-    this.services = [
-      {
-        name: "s1",
-        status: true,
-      },
-      {
-        name: "s1",
-        status: false
-      }
-    ]
-
     this.getServices();
   }
 

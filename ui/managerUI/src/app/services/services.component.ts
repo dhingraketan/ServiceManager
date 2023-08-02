@@ -3,11 +3,13 @@ import { Service } from '../Service';
 import { MatDialog } from '@angular/material/dialog';
 import { Update } from '../Update';
 import { ManagerServiceService } from '../MyServices/manager-service.service';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-services',
   templateUrl: './services.component.html',
-  styleUrls: ['./services.component.css']
+  styleUrls: ['./services.component.css'],
+  providers: [ManagerServiceService]
 })
 export class ServicesComponent implements OnInit{
 
@@ -57,6 +59,7 @@ export class ServicesComponent implements OnInit{
   downloadConfig(name:string){
     this.ManagerService.downloadConfig(name).subscribe((data:any)=>{
       this.getServices();
+      saveAs(data, name + "_config.json");
     });
   }
 }

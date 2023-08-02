@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment.dev';
 import { Observable } from 'rxjs';
 
@@ -39,9 +39,16 @@ export class ManagerServiceService {
     return this.httpClient.put(url, formData);
   }
 
-  downloadConfig(serviceName: string): Observable<any> {
-    let url = environment.SERVICE_BASE_URL + environment.SERVICE.DOWNLOAD_CONFIG + '/' + serviceName;
-    return this.httpClient.get(url, { responseType: 'blob' });
+  downloadConfig(serviceName: string){
+    let url = environment.SERVICE_BASE_URL + environment.SERVICE.DOWNLOAD_CONFIG;
+    return this.httpClient.post(
+      url,
+      {serviceName},
+      {
+        responseType: 'blob',
+        headers: new HttpHeaders().append('Content-Type', 'application/json')
+      }
+    );
   }
 
 

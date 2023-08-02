@@ -37,8 +37,7 @@ router.get('/list', function (req, res, next) {
         var name = process.name;
         services.push({ name, status });
       });
-  
-      console.log(services);
+      
       return res.status(200).send(services);
     });
   });
@@ -82,6 +81,13 @@ router.get('/list', function (req, res, next) {
   
       return res.status(200).send(services);
     });
+  });
+
+  router.post('/downloadConfig', function (req, res, next) {
+    file = req.body.serviceName + '_config.json';
+    filePath = fileDir + '\\';
+    filePath = filePath + file;
+    res.sendFile(filePath);
   });
   
 

@@ -27,62 +27,67 @@ let pythonProcess = null;
 router.get('/list', function (req, res, next) {
     services = [];
     pm2.list(function (err, list) {
-        if (err) {
-            console.log(err);
-        } else {
-            list.forEach(process => {
-                var status = false;
-                if(process.pm2_env.status == 'online'){
-                    var status = true;
-                }
-                var name = process.name;
-                services.push({name, status});
-            });
-
-            console.log(services);
-            return res.status(200).send(services);
-        }
+      if (err) {
+        console.log(err);
+        return res.status(500).send({ message: 'Error fetching service list' });
+      }
+  
+      list.forEach(process => {
+        var status = process.pm2_env.status === 'online';
+        var name = process.name;
+        services.push({ name, status });
+      });
+  
+      console.log(services);
+      return res.status(200).send(services);
     });
-});
+  });
+  
+  router.post('/start', function (req, res, next) {
+    var svcName = req.body.serviceName;
+    var path = fileDir + '\\' + svcName;
+  
+    pm2.start({
+      script: path,
+      name: svcName
+    }, function (err, apps) {
+      if (err) {
+        console.log(err);
+        return res.status(500).send({ message: 'Error starting service' });
+      }
+
+      var serviceToUpdate = services.find(service => service.name === svcName);
+      if (serviceToUpdate) {
+        serviceToUpdate.status = true;
+      }
+  
+      return res.status(200).send(services);
+    });
+  });
+  
+  router.post('/stop', function (req, res, next) {
+    var svcName = req.body.serviceName;
+    var path = fileDir + '\\' + svcName;
+  
+    pm2.stop(svcName, function (err, apps) {
+      if (err) {
+        console.log(err);
+        return res.status(500).send({ message: 'Error stopping service' });
+      }
+  
+      var serviceToUpdate = services.find(service => service.name === svcName);
+      if (serviceToUpdate) {
+        serviceToUpdate.status = false;
+      }
+  
+      return res.status(200).send(services);
+    });
+  });
+  
 
 function getFiles(directoryPath, extension) {
     const files = fs.readdirSync(directoryPath);
     const filteredFiles = files.filter(file => path.extname(file) === extension);
     return filteredFiles;
 }
-
-router.post('/start', function (req, res, next) {
-    var svcName = req.body.serviceName;
-    var path = fileDir + '\\' + svcName;
-    pm2.start({
-        script: path,
-        name: svcName
-    }, function (err, apps) {
-        if (err) {
-            console.log(err);
-        } else {
-            services.find(service => service.name == svcName).status = true;
-        }
-    })
-    return res.status(200).send(services);
-});
-
-// check if a python script is running
-function isRunning(fileName) {
-
-}
-
-router.post('/stop', function (req, res, next) {
-    var svcName = req.body.serviceName;
-    var path = fileDir + '\\' + svcName;
-   pm2.stop(svcName, function (err, apps) {
-        if (err) {
-            console.log(err);
-        } else {
-            services.find(service => service.name == svcName).status = false;
-        }
-    })
-    return res.status(200).send(services);
-});
-
 module.exports = router;

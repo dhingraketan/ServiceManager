@@ -15,11 +15,10 @@ export class ServicesComponent implements OnInit{
   services!:Service[];
  
 
-  constructor( private ManagerService: ManagerServiceService) { 
-    this.getServices();
-  }
+  constructor( private ManagerService: ManagerServiceService) {}
 
   ngOnInit(): void {
+    this.getServices();
   }
 
   getServices(){
@@ -31,36 +30,33 @@ export class ServicesComponent implements OnInit{
 
  startService(name:string){
     this.ManagerService.startService(name).subscribe((data:any)=>{
-      window.location.reload();
       console.log(data);
+      this.getServices();
     });
  }
 
   stopService(name:string){
     this.ManagerService.stopService(name).subscribe((data:any)=>{
-      window.location.reload();
       console.log(data);
+      this.getServices();
     });
   }
 
   uploadCode(update:Update){
     this.ManagerService.uploadCode(update.serviceName, update.file).subscribe((data:any)=>{
       this.getServices();
-      window.location.reload();
     });
   }
 
   uploadConfig(update:Update){
     this.ManagerService.uploadConfig(update.serviceName, update.file).subscribe((data:any)=>{
       this.getServices();
-      window.location.reload();
     });
   }
 
   downloadConfig(name:string){
     this.ManagerService.downloadConfig(name).subscribe((data:any)=>{
       this.getServices();
-      window.location.reload();
     });
   }
 }

@@ -1,4 +1,4 @@
-<p class="fs-1 m-3 fw-bold">Servic Manager<p>
+<p class="fs-1 m-3 fw-bold">Service Manager<p>
 <div class="ms-5" *ngFor="let service of services">
     <app-svc [service]="service" (startEvent)="startService($event)" (stopEvent)="stopService($event)"
     (uploadConfigEvent)="uploadConfig($event)" (uploadCodeEvent)="uploadCode($event)" 

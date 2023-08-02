@@ -25,12 +25,19 @@ export class SvcComponent implements OnInit {
   }
 
   onStart() {
-    this.startEvent.emit(this.service.name);
+    const confirmStart = window.confirm('Are you sure you want to start the service?');
+    if (confirmStart) {
+      this.startEvent.emit(this.service.name);
+    }
   }
 
   onStop() {
-    this.stopEvent.emit(this.service.name);
+    const confirmStop = window.confirm('Are you sure you want to stop the service?');
+    if (confirmStop) {
+      this.stopEvent.emit(this.service.name);
+    }
   }
+
 
   onUploadCode() {
     console.log("Upload Code");

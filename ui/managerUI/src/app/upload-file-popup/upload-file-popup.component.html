@@ -1,16 +1,25 @@
-<div class="popup-container">
-    <div class="popup-header">
-      <h1>Upload File</h1>
+<div class="col-md-2"></div>
+<div class="col-md-8">
+  <div class="row card">
+    <div class="col-sm-12">
+      <h4>Upload Section</h4>
+      <div id="fileSelector">
+        <input type="file" name="fileUplaod" id="fileUpload" multiple ng2FileSelect [uploader]="uploader">
+      </div>
+      <div>
+        <div class="row uploadList" *ngFor="let item of uploader.queue">
+          <div class="col-sm-4">{{item.file.name}}</div>
+          <div class="col-sm-4">
+            <div class="progress">
+              <div class="progress-bar bg-success" [ngStyle]="{'width':item.progress+'%'}"></div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <button type="button" class="btn btn-dark" (click)="item.upload()">Upload</button>
+            <button type="button" class="btn btn-danger" (click)="item.remove()">Cancel</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <form class="popup-form" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="fileInput" class="h4">Select File:</label>
-        <input type="file" id="fileInput">
-      </div>
-      <div class="form-buttons">
-        <button type="submit" class="btn-primary">Save</button>
-        <button type="button" class="btn-secondary" (click)="onCancel()">Cancel</button>
-      </div>
-    </form>
   </div>
-  
+</div>

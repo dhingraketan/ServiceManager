@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Service } from '../Service';
-import { MatDialog } from '@angular/material/dialog';
 import { Update } from '../Update';
 import { ManagerServiceService } from '../MyServices/manager-service.service';
 import { saveAs } from 'file-saver';
@@ -14,8 +13,7 @@ import { saveAs } from 'file-saver';
 export class ServicesComponent implements OnInit{
 
   serviceResults: any;
-  services!:Service[];
- 
+  services!:Service[]; 
 
   constructor( private ManagerService: ManagerServiceService) {}
 

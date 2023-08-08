@@ -26,10 +26,8 @@ export class ManagerServiceService {
   }
 
   uploadConfig(serviceName: string, file: File): Observable<any> {
-    let url = environment.SERVICE_BASE_URL + environment.SERVICE.UPLOAD_CONFIG + '/' + serviceName;
-    const formData = new FormData();
-    formData.append('file', file);
-    return this.httpClient.put(url, formData);
+    let url = environment.SERVICE_BASE_URL + environment.SERVICE.UPLOAD_CONFIG;
+    return this.httpClient.post(url, {serviceName, file});
   }
 
   uploadCode(serviceName: string, file: File): Observable<any> {

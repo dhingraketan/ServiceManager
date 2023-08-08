@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Update } from '../Update';
 import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
 
+const uri = 'http://localhost:3000/services/uploadConfig';
 @Component({
   selector: 'app-upload-file-popup',
   templateUrl: './upload-file-popup.component.html',
@@ -10,6 +11,8 @@ import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
 })
 export class UploadFilePopupComponent {
   update!: Update;
+
+  uploader: FileUploader = new FileUploader({ url: uri });
 
   constructor(
     public dialogRef: MatDialogRef<UploadFilePopupComponent>,
@@ -21,14 +24,4 @@ export class UploadFilePopupComponent {
   ngOnInit(): void {
     this.update = Object.assign({}, this.data);
   }
-
-  onSubmit(): void {
-    this.dialogRef.close(this.update);
-  }
-  
-
-  onCancel(): void {
-    this.dialogRef.close();
-  }
-
 }

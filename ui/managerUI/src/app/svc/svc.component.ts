@@ -12,9 +12,7 @@ import { Update } from '../Update';
 })
 export class SvcComponent implements OnInit {
   @Input() service!: Service;
-  @Output() uploadConfigEvent = new EventEmitter<Update>();
   @Output() downloadConfigEvent = new EventEmitter<string>();
-  @Output() uploadCodeEvent = new EventEmitter<Update>();
   @Output() startEvent = new EventEmitter<string>();
   @Output() stopEvent = new EventEmitter<string>();
 
@@ -50,7 +48,7 @@ export class SvcComponent implements OnInit {
         }
       }).afterClosed().subscribe(update => {
         if (update) {
-          this.uploadCodeEvent.emit(update);
+          console.log(update);
         }
       });
     })
@@ -75,7 +73,6 @@ export class SvcComponent implements OnInit {
       }).afterClosed().subscribe(update => {
         if (update) {
           console.log(update);
-          this.uploadConfigEvent.emit(update);
         }
       });
     })

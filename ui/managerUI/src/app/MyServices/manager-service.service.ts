@@ -25,18 +25,6 @@ export class ManagerServiceService {
     return this.httpClient.post(url, {serviceName});
   }
 
-  uploadConfig(serviceName: string, file: File): Observable<any> {
-    let url = environment.SERVICE_BASE_URL + environment.SERVICE.UPLOAD_CONFIG;
-    return this.httpClient.post(url, {serviceName, file});
-  }
-
-  uploadCode(serviceName: string, file: File): Observable<any> {
-    let url = environment.SERVICE_BASE_URL + environment.SERVICE.UPLOAD_CODE + '/' + serviceName;
-    const formData = new FormData();
-    formData.append('file', file);
-    return this.httpClient.put(url, formData);
-  }
-
   downloadConfig(serviceName: string){
     let url = environment.SERVICE_BASE_URL + environment.SERVICE.DOWNLOAD_CONFIG;
     return this.httpClient.post(
@@ -48,6 +36,4 @@ export class ManagerServiceService {
       }
     );
   }
-
-
 }

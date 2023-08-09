@@ -42,18 +42,6 @@ export class ServicesComponent implements OnInit{
     });
   }
 
-  uploadCode(update:Update){
-    this.ManagerService.uploadCode(update.serviceName, update.file).subscribe((data:any)=>{
-      this.getServices();
-    });
-  }
-
-  uploadConfig(update:Update){
-    this.ManagerService.uploadConfig(update.serviceName, update.file).subscribe((data:any)=>{
-      this.getServices();
-    });
-  }
-
   downloadConfig(name:string){
     this.ManagerService.downloadConfig(name).subscribe((data:any)=>{
       this.getServices();

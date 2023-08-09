@@ -24,4 +24,13 @@ export class UploadFilePopupComponent {
   ngOnInit(): void {
     this.update = Object.assign({}, this.data);
   }
+
+  onUpload() {
+    window.alert('File uploaded successfully, Please restart the service to apply changes');
+    this.dialogRef.close();
+  }
+
+  onClose(): void {
+    this.dialogRef.close();
+  }
 }

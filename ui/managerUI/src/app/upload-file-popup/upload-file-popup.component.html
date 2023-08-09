@@ -10,7 +10,7 @@
         <div class="uploadList" *ngFor="let item of uploader.queue">
           <div class="file-name">{{item.file.name}}</div>
           <div class="buttons">
-            <button type="button" class="upload-button" (click)="item.upload()" (click)="onUpload()">Upload</button>
+            <button type="button" class="upload-button" (click)="onUpload()">Upload</button>
             <button type="button" class="cancel-button" (click)="item.remove()">Cancel</button>
           </div>
         </div>

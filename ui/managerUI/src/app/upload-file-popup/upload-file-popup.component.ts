@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Update } from '../Update';
 import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
 
-const uri = 'http://localhost:3000/services/uploadConfig';
+const configUri = 'http://localhost:3000/services/uploadConfig';
 @Component({
   selector: 'app-upload-file-popup',
   templateUrl: './upload-file-popup.component.html',
@@ -12,7 +12,7 @@ const uri = 'http://localhost:3000/services/uploadConfig';
 export class UploadFilePopupComponent {
   update!: Update;
 
-  uploader: FileUploader = new FileUploader({ url: uri });
+  uploader: FileUploader = new FileUploader({ url: configUri });
 
   constructor(
     public dialogRef: MatDialogRef<UploadFilePopupComponent>,
@@ -26,8 +26,31 @@ export class UploadFilePopupComponent {
   }
 
   onUpload() {
-    window.alert('File uploaded successfully, Please restart the service to apply changes');
-    this.dialogRef.close();
+    //check if it is the correct file by checking the name
+    if(this.data.isUploadingConfig){
+
+      if(this.uploader.queue[0].file.name != this.data.serviceName + "_config.json"){
+        window.alert("Please select the correct file");
+        this.uploader.clearQueue();
+      }
+      else{
+        this.uploader.uploadAll();
+        window.alert('File uploaded successfully, Please restart the service to apply changes');
+        this.dialogRef.close();
+      }
+
+    } else if(!this.data.isUploadingCode){
+      
+      if(this.uploader.queue[0].file.name != this.data.serviceName + ".py"){
+        window.alert("Please select the correct file");
+        this.uploader.clearQueue();
+      }
+      else{
+        this.uploader.uploadAll();
+        window.alert('File uploaded successfully, Please restart the service to apply changes');
+        this.dialogRef.close();
+      }
+    }
   }
 
   onClose(): void {

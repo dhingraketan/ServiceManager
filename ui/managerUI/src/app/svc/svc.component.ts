@@ -44,7 +44,7 @@ export class SvcComponent implements OnInit {
         data: {
           serviceName: this.service.name,
           file: null,
-          isUploading: true
+          isUploadingConfig: false
         }
       }).afterClosed().subscribe(update => {
         if (update) {
@@ -68,7 +68,7 @@ export class SvcComponent implements OnInit {
         data: {
           serviceName: this.service.name,
           file: null,
-          isUploading: true
+          isUploadingConfig: true
         }
       }).afterClosed().subscribe(update => {
         if (update) {

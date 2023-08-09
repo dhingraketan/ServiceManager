@@ -1,9 +1,10 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Update } from '../Update';
-import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
+import { FileUploader } from 'ng2-file-upload';
+import { environment } from 'src/environments/environment.dev';
 
-const configUri = 'http://localhost:3000/services/uploadConfig';
+const configUri = environment.SERVICE_BASE_URL + environment.SERVICE.UPLOAD;
 @Component({
   selector: 'app-upload-file-popup',
   templateUrl: './upload-file-popup.component.html',

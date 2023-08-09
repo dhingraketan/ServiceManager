@@ -5,11 +5,8 @@ var fs = require('fs');
 var path = require('path');
 var pm2 = require('pm2');
 
-const fileDir = "C:\\Users\\kdhingra\\OneDrive - GKSystems\\Desktop\\poc\\api\\routes";
+const fileDir = "C:\\Users\\kdhingra\\OneDrive - GKSystems\\Desktop\\uploads";
 var services = [];
-
-// const { spawn } = require('child_process');
-let pythonProcess = null;
 
 
 /* GET home page. */
@@ -54,9 +51,8 @@ router.post('/start', function (req, res, next) {
 });
 
 router.post('/stop', function (req, res, next) {
-  var svcName = req.body.serviceName;
-  var path = fileDir + '\\' + svcName;
 
+  var svcName = req.body.serviceName;
   pm2.stop(svcName, function (err, apps) {
     if (err) {
       console.log(err);
@@ -79,17 +75,9 @@ router.post('/downloadConfig', function (req, res, next) {
   res.sendFile(filePath);
 });
 
-
-function getFiles(directoryPath, extension) {
-  const files = fs.readdirSync(directoryPath);
-  const filteredFiles = files.filter(file => path.extname(file) === extension);
-  return filteredFiles;
-}
-
-
 var store = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, './uploads');
+    cb(null, fileDir);
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
@@ -98,10 +86,9 @@ var store = multer.diskStorage({
 
 var upload = multer({ storage: store }).single('file');
 
-router.post('/uploadConfig', function (req, res, next) {
+router.post('/upload', function (req, res, next) {
   upload(req, res, function (err) {
     if (err) {
-      console.log("yoo error");
       return res.status(501).json({ error: err });
     }
 

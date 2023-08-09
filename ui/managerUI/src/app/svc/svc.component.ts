@@ -38,7 +38,6 @@ export class SvcComponent implements OnInit {
 
 
   onUploadCode() {
-    console.log("Upload Code");
     setTimeout(() => {
       this.dialog.open(UploadFilePopupComponent, {
         data: {
@@ -61,8 +60,6 @@ export class SvcComponent implements OnInit {
   }
 
   onUploadConfig() {
-    console.log("Upload Config");
-
     setTimeout(() => {
       this.dialog.open(UploadFilePopupComponent, {
         data: {

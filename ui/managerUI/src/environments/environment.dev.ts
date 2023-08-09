@@ -6,8 +6,7 @@ export const environment = {
         GET_SERVICES: 'list',
         START_SERVICE: 'start',
         STOP_SERVICE: 'stop',
-        UPLOAD_CONFIG: 'uploadConfig',
-        UPLOAD_CODE: 'uploadCode',
+        UPLOAD: 'upload',
         DOWNLOAD_CONFIG: 'downloadConfig'
     }
 };

@@ -30,14 +30,12 @@ export class ServicesComponent implements OnInit{
 
  startService(name:string){
     this.ManagerService.startService(name).subscribe((data:any)=>{
-      console.log(data);
       this.getServices();
     });
  }
 
   stopService(name:string){
     this.ManagerService.stopService(name).subscribe((data:any)=>{
-      console.log(data);
       this.getServices();
     });
   }

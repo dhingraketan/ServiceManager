@@ -1,15 +1,15 @@
-<div class="my-3 svc container-fluid">
+<div class="svc container-fluid">
     <h3 class="name fw-bold">{{service.name}}</h3>
     <div *ngIf="service.status; then thenBlock; else elseBlock"></div>
     <ng-template #thenBlock>
-        <h5 class="bg-success bg-gradient text-white">Running</h5>
-        <button class="btn bg-danger text-white" (click)="onStop()">Stop</button>
+        <h5 class="status-badge running">Running</h5>
+        <button class="action-button stop" (click)="onStop()">Stop</button>
     </ng-template>
     <ng-template #elseBlock>
-        <h5 class="bg-danger bg-gradient text-white">Stopped</h5>
-        <button class="btn bg-success text-white" (click)="onStart()">Start</button>
+        <h5 class="status-badge stopped">Stopped</h5>
+        <button class="action-button start" (click)="onStart()">Start</button>
     </ng-template>
-    <a class="btn bg-white text-blue" (click)="onUploadCode()" id="code">Upload Source Code</a>
-    <a class="btn" (click)="onDownloadConfig()" id="config">Download Config File</a>
-    <a class="btn" (click)="onUploadConfig()" id="config">Upload Config File</a>
+    <a class="action-button upload-code" (click)="onUploadCode()" id="code">Upload Source Code</a>
+    <a class="action-button download-config" (click)="onDownloadConfig()" id="config">Download Config File</a>
+    <a class="action-button upload-config" (click)="onUploadConfig()" id="config">Upload Config File</a>
 </div>

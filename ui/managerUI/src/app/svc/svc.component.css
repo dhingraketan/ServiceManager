@@ -64,29 +64,38 @@
 }
 
 /* Media Queries for Responsiveness */
+/* ... (previous CSS code) ... */
+
+/* Media Queries for Responsiveness */
 @media screen and (max-width: 700px) {
     .svc {
         flex-direction: column;
         align-items: stretch;
         padding: 10px;
         max-width: 80%;
+        transition: all 0.3s ease; /* Transition for the layout change */
     }
 
     .name {
         margin: 10px 0;
         font-size: 1.2rem;
+        transition: all 0.3s ease; /* Transition for font size change */
     }
 
     .status-badge, .action-button {
         margin: 5px 0;
+        transition: all 0.3s ease; /* Transition for margin change */
     }
 
     .status-badge {
         font-size: 0.8rem;
+        transition: all 0.3s ease; /* Transition for font size change */
     }
 
     .action-button {
         padding: 3px 5px;
         font-size: 0.8rem;
+        transition: all 0.3s ease; /* Transition for padding and font size change */
     }
 }
+
